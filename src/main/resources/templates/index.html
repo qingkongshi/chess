@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>air-war-chess</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<style>
+  .td{
+    text-align: center;
+    border-color: #000000;
+    padding: 0;
+  }
+  .button{
+    width:100%;
+    height:100%;
+    background-color:transparent;
+    border-style:none;
+  }
+</style>
+<body>
+
+<div class="layui-container">
+  <div class="layui-progress" style="margin: 15px 0 30px;">
+    <div class="layui-progress-bar" lay-percent="100%"></div>
+  </div>
+  
+  
+<!--  <div class="layui-btn-container">-->
+<!--    <button class="layui-btn" test-active="test-form">一个按钮</button>-->
+<!--    <button class="layui-btn layui-btn-normal" id="test2">当前日期</button>-->
+<!--    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>-->
+<!--  </div>-->
+
+
+<!--  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
+<!--    <legend>常规布局：从小屏幕堆叠到桌面水平排列</legend>-->
+<!--  </fieldset>-->
+
+
+  <div class="layui-btn-container">
+    <button class="layui-btn" test-active="prepare">准备</button>-
+  </div>
+
+  <table class="layui-table" style = "border:0px;width: 200px; height: 150px; margin: 0;box-sizing: content-box;">
+<!--    <colgroup>-->
+<!--      <col width="50px">-->
+<!--      <col width="50px">-->
+<!--      <col width="50px">-->
+<!--      <col width="50px">-->
+<!--      <col>-->
+<!--    </colgroup>-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th lay-data="{width:100000}">昵称</th>-->
+<!--        <th lay-data="{width:80}">积分</th>-->
+<!--        <th lay-data="{field:'sign'}">签名</th>-->
+<!--        <th lay-data="{field:'sign'}">签名</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+    <tbody>
+      <tr style = "width:50px">
+        <td style="text-align: center; border-color: #000000;padding: 0;width:50px;">
+
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          1
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          2
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          3
+        </td>
+      </tr>
+      <tr style = "width:50px">
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          A
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          <button class="layui-circle button" onclick="ccc(this)"/>
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          <button/>
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          <button/>
+        </td>
+      </tr>
+      <tr style = "width:50px">
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+          B
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+
+        </td>
+        <td style="text-align: center; border-color: #000000;padding: 0;">
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--  <blockquote class="layui-elem-quote" style="margin-top: 30px;">-->
+<!--    <div class="layui-text">-->
+<!--      <ul>-->
+<!--        <li>你当前预览的是：<span>layui-v<span id="version"></span></span></li>-->
+<!--        <li>layui 是一套开源的 Web UI（界面）组件库。这是一个极其简洁的演示页面</li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </blockquote>-->
+
+<!--  user:<input id="user" type="text" /><br><br>-->
+<!--  message:<input id="msg" type="text" />-->
+<!--  <button onclick="send()">发送消息</button>-->
+<!--  <hr />-->
+<!--  <button onclick="closeWebSocket()">关闭WebSocket连接</button>-->
+<!--  <hr />-->
+  <div id="message"></div>
+</div>
+
+
+
+<!-- 引入 layui.js 的 <script> 标签最好放置在 html 末尾 -->
+<script src="/layui/layui.js"></script>
+<!--<script src="/js/sockjs-1.0.0.min.js"></script>-->
+<script>
+  function ccc(i){
+    if(i.style.backgroundColor ==""){
+      i.style.backgroundColor="red"
+    }else{
+      i.style.backgroundColor="grey"
+    }
+  };
+
+layui.use(function(){
+  var layer = layui.layer
+  ,form = layui.form
+  ,table = layui.table
+  ,laypage = layui.laypage
+  ,element = layui.element
+  ,laydate = layui.laydate
+  ,$ = layui.$
+  ,util = layui.util;
+
+  //欢迎信息
+  layer.msg('Hello World');
+  
+  //输出版本号
+  lay('#version').html(layui.v);
+
+  table.render({
+    height: 3152 //容器高度ss
+  });
+
+  //日期
+  laydate.render({
+    elem: '#test2'
+    ,value: new Date()
+    ,isInitValue: true
+  });
+
+  //触发事件
+  util.event('test-active', {
+    'test-form': function(){
+      layer.open({
+        type: 1
+        ,resize: false
+        ,shadeClose: true
+        ,area: '350px'
+        ,title: 'layer + form'
+        ,content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
+          ,'<li class="layui-form-item">'
+            ,'<label class="layui-form-label">输入框</label>'
+            ,'<div class="layui-input-block">'
+              ,'<input class="layui-input" lay-verify="required" name="field1">'
+            ,'</div>'
+          ,'</li>'
+          ,'<li class="layui-form-item">'
+            ,'<label class="layui-form-label">选择框</label>'
+            ,'<div class="layui-input-block">'
+              ,'<select name="field2">'
+                ,'<option value="A">A</option>'
+                ,'<option value="B">B</option>'
+              ,'<select>'
+            ,'</div>'
+          ,'</li>'
+          ,'<li class="layui-form-item" style="text-align:center;">'
+            ,'<button type="submit" lay-submit lay-filter="*" class="layui-btn">提交</button>'
+          ,'</li>'
+        ,'</ul>'].join('')
+        ,success: function(layero, index){
+          layero.find('.layui-layer-content').css('overflow', 'visible');
+          
+          form.render().on('submit(*)', function(data){
+            layer.msg(JSON.stringify(data.field), {icon: 1});
+            //layer.close(index); //关闭层
+          });
+        }
+      });
+    },
+    'prepare': function(){
+      $.ajax({
+        url: "/base/prepare?userId="+userId,
+        type: "get",
+        success: function (msg) {
+          //信息框
+          console.log(msg)
+        }
+      });
+    }
+
+  });
+});
+  //{"to":"22","msg":"你好"}
+
+  var userId = [[${userId}]];
+  var websocket = null;
+  //判断当前浏览器是否支持WebSocket
+  if('WebSocket' in window) {
+    websocket = new WebSocket("ws://192.168.103.91:80/customWebSocketHandler?mchNo="+ userId);
+  } else {
+    console.log("当前浏览器不支持")
+  }
+  //连接发生错误的回调方法
+  websocket.onerror = function () {
+    setMessageInnerHTML("WebSocket连接发生错误");
+  };
+
+  //连接成功建立的回调方法
+  websocket.onopen = function () {
+    setMessageInnerHTML("WebSocket连接成功");
+  }
+
+  //接收到消息的回调方法
+  websocket.onmessage = function (event) {
+    setMessageInnerHTML(event.data);
+  }
+
+  //连接关闭的回调方法
+  websocket.onclose = function () {
+    setMessageInnerHTML("WebSocket连接关闭");
+  }
+
+  //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+  window.onbeforeunload = function () {
+    closeWebSocket();
+  }
+
+  //将消息显示在网页上
+  function setMessageInnerHTML(innerHTML) {
+    // console.log(innerHTML)
+    var a = JSON.parse(innerHTML);
+    console.log(a)
+    document.getElementById('message').innerHTML += a.message + '<br/>';
+  }
+
+  //关闭WebSocket连接
+  function closeWebSocket() {
+    websocket.close();
+  }
+
+  //发送消息
+  function send() {
+    var user = document.getElementById('user').value;
+    var msg = document.getElementById('msg').value;
+    var message = {
+      "to":user,
+      "msg":msg
+    }
+    console.log(message)
+    websocket.send(JSON.stringify(message));
+    document.getElementById('msg').value = "";
+  }
+</script>
+</body>
+</html>

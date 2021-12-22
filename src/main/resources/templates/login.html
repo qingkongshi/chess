@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>air-war-chess</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<style type="text/css">
+    .container{
+        width: 420px;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        padding: 20px;
+        z-index: 130;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 3px 18px rgba(100, 0, 0, .5);
+        font-size: 16px;
+    }
+    .close{
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        margin-left: 410px;
+        margin-top: -10px;
+    }
+
+    .layui-input{
+        border-radius: 5px;
+        width: 300px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .layui-form-item{
+        margin-left: -20px;
+    }
+    #logoid{
+        margin-top: -16px;
+        padding-left:150px;
+        padding-bottom: 15px;
+    }
+    .layui-btn{
+        margin-left: -50px;
+        border-radius: 5px;
+        width: 350px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .verity{
+        width: 120px;
+    }
+    .font-set{
+        font-size: 13px;
+        text-decoration: none;
+        margin-left: 120px;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+
+</style>
+<body>
+    <form class="layui-form" action="">
+        <div class="container">
+<!--            <button class="close" title="关闭">X</button>-->
+            <div class="layui-form-mid layui-word-aux" style="left: 45%;">
+                <div>
+                    <i class="layui-icon layui-icon-release" style="font-size: 30px; color: #1E9FFF;"></i>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">登陆</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function(){
+            var form = layui.form
+                ,layer = layui.layer
+                ,layedit = layui.layedit
+                ,$ = layui.$;
+
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                console.log(123)
+                $.ajax({
+                    url: "/back/login",
+                    type: "get",
+                    data: data.field,
+                    success: function (msg) {
+                        //信息框
+                        location.href="/index?user="+msg
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

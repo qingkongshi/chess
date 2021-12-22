@@ -1,0 +1,13 @@
+server:
+  port: 80
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    #禁止thymeleaf缓存（建议：开发环境设置为false，生成环境设置为true）
+    cache: false
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:static/
+  main:
+    allow-bean-definition-overriding: true
