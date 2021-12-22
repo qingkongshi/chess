@@ -43,68 +43,104 @@
   <div class="layui-btn-container">
     <button class="layui-btn" test-active="prepare">准备</button>-
   </div>
-
-  <table class="layui-table" style = "border:0px;width: 200px; height: 150px; margin: 0;box-sizing: content-box;">
-<!--    <colgroup>-->
-<!--      <col width="50px">-->
-<!--      <col width="50px">-->
-<!--      <col width="50px">-->
-<!--      <col width="50px">-->
-<!--      <col>-->
-<!--    </colgroup>-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <th lay-data="{width:100000}">昵称</th>-->
-<!--        <th lay-data="{width:80}">积分</th>-->
-<!--        <th lay-data="{field:'sign'}">签名</th>-->
-<!--        <th lay-data="{field:'sign'}">签名</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
+  <table class="layui-table" style = "border:0px;width: 720px; height: 720px; margin: 0;box-sizing: content-box;">
     <tbody>
-      <tr style = "width:50px">
-        <td style="text-align: center; border-color: #000000;padding: 0;width:50px;">
-
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          1
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          2
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          3
-        </td>
-      </tr>
-      <tr style = "width:50px">
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          A
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          <button class="layui-circle button" onclick="ccc(this)"/>
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          <button/>
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          <button/>
-        </td>
-      </tr>
-      <tr style = "width:50px">
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-          B
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-
-        </td>
-        <td style="text-align: center; border-color: #000000;padding: 0;">
-
-        </td>
-      </tr>
+    <tr style = "width:240px">
+      <td style="text-align: center; border-color: #000000;padding: 0;width:240px;">
+        <button class="layui-circle button" id="0,0" onclick="ccc(this,0,0)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;width:240px;">
+        <button class="layui-circle button" id="0,1" onclick="ccc(this,0,1)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;width:240px;">
+        <button class="layui-circle button" id="0,2" onclick="ccc(this,0,2)"/>
+      </td>
+    </tr>
+    <tr style = "width:240px">
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="1,0" onclick="ccc(this,1,0)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="1,1" onclick="ccc(this,1,1)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="1,2" onclick="ccc(this,1,2)"/>
+      </td>
+    </tr>
+    <tr style = "width:240px">
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="2,0" onclick="ccc(this,2,0)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="2,1" onclick="ccc(this,2,1)"/>
+      </td>
+      <td style="text-align: center; border-color: #000000;padding: 0;">
+        <button class="layui-circle button" id="2,2" onclick="ccc(this,2,2)"/>
+      </td>
+    </tr>
     </tbody>
   </table>
+<!--  <table class="layui-table" style = "border:0px;width: 200px; height: 150px; margin: 0;box-sizing: content-box;">-->
+<!--&lt;!&ndash;    <colgroup>&ndash;&gt;-->
+<!--&lt;!&ndash;      <col width="50px">&ndash;&gt;-->
+<!--&lt;!&ndash;      <col width="50px">&ndash;&gt;-->
+<!--&lt;!&ndash;      <col width="50px">&ndash;&gt;-->
+<!--&lt;!&ndash;      <col width="50px">&ndash;&gt;-->
+<!--&lt;!&ndash;      <col>&ndash;&gt;-->
+<!--&lt;!&ndash;    </colgroup>&ndash;&gt;-->
+<!--&lt;!&ndash;    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th lay-data="{width:100000}">昵称</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th lay-data="{width:80}">积分</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th lay-data="{field:'sign'}">签名</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th lay-data="{field:'sign'}">签名</th>&ndash;&gt;-->
+<!--&lt;!&ndash;      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;    </thead>&ndash;&gt;-->
+<!--    <tbody>-->
+<!--      <tr style = "width:50px">-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;width:50px;">-->
+
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          1-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          2-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          3-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      <tr style = "width:50px">-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          A-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          <button class="layui-circle button" onclick="ccc(this)"/>-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          <button/>-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          <button/>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      <tr style = "width:50px">-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+<!--          B-->
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+
+<!--        </td>-->
+<!--        <td style="text-align: center; border-color: #000000;padding: 0;">-->
+
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
 
 <!--  <blockquote class="layui-elem-quote" style="margin-top: 30px;">-->
 <!--    <div class="layui-text">-->
@@ -130,12 +166,59 @@
 <script src="/layui/layui.js"></script>
 <!--<script src="/js/sockjs-1.0.0.min.js"></script>-->
 <script>
-  function ccc(i){
-    if(i.style.backgroundColor ==""){
-      i.style.backgroundColor="red"
+  var data = {
+    userId:null,
+    opponentId:null,
+    message:null,
+    current:null,
+    first:null
+  };
+  function ccc(i,x,y){
+    console.log(x)
+    console.log(y)
+    if (data.current==undefined||data.current==null||data.current==""||data.current==0){
+      alert("未开始或对方落子")
     }else{
-      i.style.backgroundColor="grey"
+      if (data.first==1){
+        if(i.style.backgroundColor ==""){
+          i.style.backgroundColor="green"
+          var message = {
+            "userId":data.userId,
+            "opponentId":data.opponentId,
+            "current":data.current,
+            "first":data.first,
+            "x":x,
+            "y":y
+          }
+          console.log(message)
+          websocket.send(JSON.stringify(message));
+        }else{
+          alert("该位置已有棋子")
+        }
+      }else{
+        if(i.style.backgroundColor ==""){
+          i.style.backgroundColor="blue"
+          var message = {
+            "userId":data.userId,
+            "opponentId":data.opponentId,
+            "current":data.current,
+            "first":data.first,
+            "x":x,
+            "y":y
+          }
+          console.log(message)
+          websocket.send(JSON.stringify(message));
+        } else{
+          alert("该位置已有棋子")
+        }
+      }
     }
+
+    // if(i.style.backgroundColor ==""){
+    //   i.style.backgroundColor="red"
+    // }else{
+    //   i.style.backgroundColor="grey"
+    // }
   };
 
 layui.use(function(){
@@ -149,7 +232,7 @@ layui.use(function(){
   ,util = layui.util;
 
   //欢迎信息
-  layer.msg('Hello World');
+  // layer.msg('Hello World');
   
   //输出版本号
   lay('#version').html(layui.v);
@@ -229,12 +312,14 @@ layui.use(function(){
   }
   //连接发生错误的回调方法
   websocket.onerror = function () {
-    setMessageInnerHTML("WebSocket连接发生错误");
+    console.log("WebSocket连接发生错误")
+    // setMessageInnerHTML("WebSocket连接发生错误");
   };
 
   //连接成功建立的回调方法
   websocket.onopen = function () {
-    setMessageInnerHTML("WebSocket连接成功");
+    console.log("WebSocket连接成功")
+    // setMessageInnerHTML("WebSocket连接成功");
   }
 
   //接收到消息的回调方法
@@ -244,7 +329,8 @@ layui.use(function(){
 
   //连接关闭的回调方法
   websocket.onclose = function () {
-    setMessageInnerHTML("WebSocket连接关闭");
+    console.log("WebSocket连接关闭")
+    // setMessageInnerHTML("WebSocket连接关闭");
   }
 
   //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
@@ -255,9 +341,21 @@ layui.use(function(){
   //将消息显示在网页上
   function setMessageInnerHTML(innerHTML) {
     // console.log(innerHTML)
-    var a = JSON.parse(innerHTML);
-    console.log(a)
-    document.getElementById('message').innerHTML += a.message + '<br/>';
+    data = JSON.parse(innerHTML);
+    console.log(data);
+
+
+    if (data.message != 'success'){
+      document.getElementById('message').innerHTML += data.message + '<br/>';
+    }else{
+      var name = data.x+","+data.y;
+      if(data.first==1){
+        document.getElementById(name).style.backgroundColor="blue"
+      }else{
+        document.getElementById(name).style.backgroundColor="green"
+      }
+    }
+    // document.getElementById('message').innerHTML += innerHTML + '<br/>';
   }
 
   //关闭WebSocket连接

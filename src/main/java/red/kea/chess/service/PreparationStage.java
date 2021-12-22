@@ -43,18 +43,18 @@ public class PreparationStage {
             if (random.nextBoolean()){
 //                matchedPlayer.setCircle(userId);
 //                matchedPlayer.setFork(poll);
-                PreStep one = new PreStep(userId,poll,"已匹配到对手，你是先手",1);
+                PreStep one = new PreStep(userId,poll,"已匹配到对手，你是先手",1,1,null,null);
                 JSONObject jsonOne = JSONUtil.parseObj(one);
-                PreStep two = new PreStep(poll,userId,"已匹配到对手，你是后手",0);
+                PreStep two = new PreStep(poll,userId,"已匹配到对手，你是后手",0,0,null,null);
                 JSONObject jsonTwo = JSONUtil.parseObj(two);
                 customWebSocketHandler.sendMessageToUser(userId,new TextMessage(jsonOne.toString()));
                 customWebSocketHandler.sendMessageToUser(poll,new TextMessage(jsonTwo.toString()));
             }else{
 //                matchedPlayer.setCircle(poll);
 //                matchedPlayer.setFork(userId);
-                PreStep one = new PreStep(userId,poll,"已匹配到对手，你是后手",0);
+                PreStep one = new PreStep(userId,poll,"已匹配到对手，你是后手",0,0,null,null);
                 JSONObject jsonOne = JSONUtil.parseObj(one);
-                PreStep two = new PreStep(poll,userId,"已匹配到对手，你是先手",1);
+                PreStep two = new PreStep(poll,userId,"已匹配到对手，你是先手",1,1,null,null);
                 JSONObject jsonTwo = JSONUtil.parseObj(two);
                 customWebSocketHandler.sendMessageToUser(userId,new TextMessage(jsonOne.toString()));
                 customWebSocketHandler.sendMessageToUser(poll,new TextMessage(jsonTwo.toString()));

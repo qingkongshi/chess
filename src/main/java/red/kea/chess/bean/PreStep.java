@@ -27,4 +27,11 @@ public class PreStep {
     /** 当前落子 */
     private Integer current;
 
+    /** 先手 */
+    private Integer first;
+
+    private Integer x;
+
+    private Integer y;
+
 }

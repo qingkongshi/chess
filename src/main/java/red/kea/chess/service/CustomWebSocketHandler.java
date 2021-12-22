@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import red.kea.chess.bean.PreStep;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class CustomWebSocketHandler extends TextWebSocketHandler implements WebS
         String mchNo = getMchNo(session);
         if (StrUtil.isNotEmpty(mchNo)) {
             users.put(mchNo, session);
-            session.sendMessage(new TextMessage("成功建立websocket-spring连接"));
+//            session.sendMessage(new TextMessage("成功建立websocket-spring连接"));
             log.info("用户标识：{},Session：{}", mchNo, session.toString());
         }
     }
@@ -48,19 +49,38 @@ public class CustomWebSocketHandler extends TextWebSocketHandler implements WebS
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         log.info("收到客户端消息：{}", message.getPayload());
         JSONObject msgJson = JSONUtil.parseObj(message.getPayload());
-        String to = msgJson.getStr("to");
-        String msg = msgJson.getStr("msg");
-        WebSocketMessage<?> webSocketMessageServer = new TextMessage("server:" +message);
+
+        String userId = msgJson.getStr("userId");
+        String opponentId = msgJson.getStr("opponentId");
+        String current = msgJson.getStr("current");
+        Integer first = Integer.valueOf(msgJson.getStr("first"));
+        Integer x = Integer.valueOf(msgJson.getStr("x"));
+        Integer y = Integer.valueOf(msgJson.getStr("y"));
+
         try {
-//            session.sendMessage(webSocketMessageServer);
-            if("all".equals(to.toLowerCase())) {
-                sendMessageToAllUsers(new TextMessage(getMchNo(session) + ":" +msg));
-            }else {
-                sendMessageToUser(to, new TextMessage(getMchNo(session) + ":" +msg));
-            }
+            PreStep one = new PreStep(userId,opponentId,"suc",0,first,x,y);
+            JSONObject jsonOne = JSONUtil.parseObj(one);
+            sendMessageToUser(userId, new TextMessage(jsonOne.toString()));
+            PreStep two = new PreStep(opponentId,userId,"success",1,first==1?0:1,x,y);
+            JSONObject jsonTwo = JSONUtil.parseObj(two);
+            sendMessageToUser(opponentId, new TextMessage(jsonTwo.toString()));
         } catch (Exception e) {
             log.info("handleTextMessage method error：{}", e);
         }
+
+//        String to = msgJson.getStr("to");
+//        String msg = msgJson.getStr("msg");
+//        WebSocketMessage<?> webSocketMessageServer = new TextMessage("server:" +message);
+//        try {
+////            session.sendMessage(webSocketMessageServer);
+//            if("all".equals(to.toLowerCase())) {
+//                sendMessageToAllUsers(new TextMessage(getMchNo(session) + ":" +msg));
+//            }else {
+//                sendMessageToUser(to, new TextMessage(getMchNo(session) + ":" +msg));
+//            }
+//        } catch (Exception e) {
+//            log.info("handleTextMessage method error：{}", e);
+//        }
     }
 
     @Override
