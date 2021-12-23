@@ -34,6 +34,9 @@ public class CustomWebSocketHandler extends TextWebSocketHandler implements WebS
         users = new HashMap<>();
     }
 
+    static int[][] a = {{0,0,0},{0,0,0},{0,0,0}};
+    static int one,two,three,four,five,six,seven,eight,nine;
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         log.info("成功建立websocket-spring连接");
@@ -58,16 +61,41 @@ public class CustomWebSocketHandler extends TextWebSocketHandler implements WebS
         Integer y = Integer.valueOf(msgJson.getStr("y"));
 
         try {
-            PreStep one = new PreStep(userId,opponentId,"suc",0,first,x,y);
-            JSONObject jsonOne = JSONUtil.parseObj(one);
-            sendMessageToUser(userId, new TextMessage(jsonOne.toString()));
-            PreStep two = new PreStep(opponentId,userId,"success",1,first==1?0:1,x,y);
-            JSONObject jsonTwo = JSONUtil.parseObj(two);
-            sendMessageToUser(opponentId, new TextMessage(jsonTwo.toString()));
+            PreStep own = new PreStep(userId,opponentId,"suc",0,first,x,y);
+            JSONObject jsonOwn = JSONUtil.parseObj(own);
+            sendMessageToUser(userId, new TextMessage(jsonOwn.toString()));
+            PreStep other = new PreStep(opponentId,userId,"success",1,first==1?0:1,x,y);
+            JSONObject jsonOther = JSONUtil.parseObj(other);
+            sendMessageToUser(opponentId, new TextMessage(jsonOther.toString()));
         } catch (Exception e) {
             log.info("handleTextMessage method error：{}", e);
         }
+        if (first == 1){
+            a[x][y] = 1;
+        }else{
+            a[x][y] = 2;
+        }
+        int win = win();
+        if (win==1){
+            PreStep own = new PreStep(userId,opponentId,"you win",0,first,x,y);
+            JSONObject jsonOwn = JSONUtil.parseObj(own);
+            sendMessageToUser(userId, new TextMessage(jsonOwn.toString()));
 
+            PreStep other = new PreStep(opponentId,userId,"you lost",0,first==1?0:1,x,y);
+            JSONObject jsonOther = JSONUtil.parseObj(other);
+            sendMessageToUser(opponentId, new TextMessage(jsonOther.toString()));
+            a = new int[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        }else if(win==2){
+            System.out.println("平局");
+            PreStep own = new PreStep(userId,opponentId,"draw",0,first,x,y);
+            JSONObject jsonOwn = JSONUtil.parseObj(own);
+            sendMessageToUser(userId, new TextMessage(jsonOwn.toString()));
+
+            PreStep other = new PreStep(opponentId,userId,"draw",0,first==1?0:1,x,y);
+            JSONObject jsonOther = JSONUtil.parseObj(other);
+            sendMessageToUser(opponentId, new TextMessage(jsonOther.toString()));
+            a = new int[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        }
 //        String to = msgJson.getStr("to");
 //        String msg = msgJson.getStr("msg");
 //        WebSocketMessage<?> webSocketMessageServer = new TextMessage("server:" +message);
@@ -81,6 +109,35 @@ public class CustomWebSocketHandler extends TextWebSocketHandler implements WebS
 //        } catch (Exception e) {
 //            log.info("handleTextMessage method error：{}", e);
 //        }
+    }
+
+    /**
+     * 判断胜负
+     * 这个方法又繁琐,又扯
+     * @return 0-未结束,1-一方获胜,2-平局
+     */
+    private static int win(){
+        one = a[0][0] ;
+        two = a[0][1];
+        three = a[0][2];
+        four = a[1][0];
+        five = a[1][1];
+        six = a[1][2];
+        seven = a[2][0];
+        eight = a[2][1];
+        nine = a[2][2];
+        if ((one==two&&one==three&&one!=0)||(four==five&&four==six&&four!=0)||(seven==eight&&seven==nine&&seven!=0)){
+
+        }else if((one==four&&one==seven&&one!=0)||(two==five&&two==eight&&two!=0)||(three==six&&three==nine&&three!=0)){
+
+        }else if((one==five&&one==nine&&one!=0)||(three==five&&three==seven&&three!=0)) {
+
+        }else if(one!=0&&two!=0&&three!=0&&four!=0&&five!=0&&six!=0&&seven!=0&&eight!=0&&nine!=0){
+            return 2;
+        }else{
+            return 0;
+        }
+        return 1;
     }
 
     @Override
