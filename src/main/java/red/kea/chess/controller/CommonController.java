@@ -20,7 +20,6 @@ public class CommonController {
 
     @RequestMapping("prepare")
     public String prepare(String userId){
-        System.out.println(userId);
         return preparationStage.prepare(userId);
     }
 }

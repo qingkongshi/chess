@@ -22,8 +22,6 @@ public class PreparationStage {
 
     static Queue<String> queue = new ConcurrentLinkedQueue<>();
 
-    static List<MatchedPlayer> list = new ArrayList<>();
-
 //    private final CustomWebSocketHandler customWebSocketHandler;
 //
 //    public PreparationStage() {
@@ -39,10 +37,7 @@ public class PreparationStage {
             queue.add(userId);
         }else{
             Random random = new Random();
-            MatchedPlayer matchedPlayer = new MatchedPlayer();
             if (random.nextBoolean()){
-//                matchedPlayer.setCircle(userId);
-//                matchedPlayer.setFork(poll);
                 PreStep one = new PreStep(userId,poll,"已匹配到对手，你是先手",1,1,null,null);
                 JSONObject jsonOne = JSONUtil.parseObj(one);
                 PreStep two = new PreStep(poll,userId,"已匹配到对手，你是后手",0,0,null,null);
@@ -50,8 +45,6 @@ public class PreparationStage {
                 customWebSocketHandler.sendMessageToUser(userId,new TextMessage(jsonOne.toString()));
                 customWebSocketHandler.sendMessageToUser(poll,new TextMessage(jsonTwo.toString()));
             }else{
-//                matchedPlayer.setCircle(poll);
-//                matchedPlayer.setFork(userId);
                 PreStep one = new PreStep(userId,poll,"已匹配到对手，你是后手",0,0,null,null);
                 JSONObject jsonOne = JSONUtil.parseObj(one);
                 PreStep two = new PreStep(poll,userId,"已匹配到对手，你是先手",1,1,null,null);
@@ -59,8 +52,6 @@ public class PreparationStage {
                 customWebSocketHandler.sendMessageToUser(userId,new TextMessage(jsonOne.toString()));
                 customWebSocketHandler.sendMessageToUser(poll,new TextMessage(jsonTwo.toString()));
             }
-
-//            list.add(matchedPlayer);
         }
         return "1";
     }

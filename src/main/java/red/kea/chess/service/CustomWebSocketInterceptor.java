@@ -35,7 +35,7 @@ public class CustomWebSocketInterceptor implements HandshakeInterceptor {
             log.info("mchNo：{}", httpServletRequest.getParameter("mchNo"));
             if (session != null) {
                 log.info(session.getId());
-                session.setAttribute("mchNo",httpServletRequest.getParameter("mchNo"));
+//                session.setAttribute("mchNo",httpServletRequest.getParameter("mchNo"));
                 attributes.put("sessionId",session.getId());
                 attributes.put("mchNo", httpServletRequest.getParameter("mchNo"));
             }
